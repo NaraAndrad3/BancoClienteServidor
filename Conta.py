@@ -5,8 +5,35 @@ from Historico import *
 from Pessoa import *
 
 class Conta:
+
+    """
+        Classe que representa a conta:
+
+        '''
+        Atributos
+        ---------
+        titular:str
+            referente a conta que tem um titular
+        numero:int
+            referente ao numero da conta do titular
+        saldo:float
+            referente ao valor que contem na conta
+        historico:
+            referente ao historico de movimentação na conta
+
+        Metodos
+        -------
+        sacar( valor: float)
+            saca o valor da conta
+        depositar(valor: float)
+            deposita o valor na conta
+        transferir(valor: float , destiono: int)
+            transfere o valor para uma conta apartir do numero da conta de destino
+        extrato()
+            retorna todos os dados da conta
+    
+    """
     slots = ['_titular','_numero','_saldo','historico']
-    #manda o obj de pessoa pra ca
     def __init__(self, titular, numero,senha, saldo=0.0,limite = 1000):
         self._titular = titular
         self._numero= numero
@@ -57,7 +84,27 @@ class Conta:
     def historico(self,h):
         self._historico = h
    
-    def sacar(self,valor): 
+    def sacar(self,valor):
+
+        """
+        Retira um valo da conta solicitado pelo o usuário.
+        
+        Parametros
+        ----------
+        valor: float
+            o valor é subtraido do saldo, caso o valor seja menor que o saldo.
+             
+        Retorno
+        -------
+            Retona o valor booleano verdadeiro caso seja a operação seja realizada com sucesso, caso contrario falso.
+        
+        Atributos:
+        ---------
+        valor:float
+            recebe o valor que o usuario dejesa sacar e transforma em float para realizar operação. 
+        
+        """
+
         valor = float(valor)
         if valor <= self.saldo and valor > 0:
             self.saldo -= valor
@@ -68,6 +115,25 @@ class Conta:
             return False
 
     def depositar(self,valor):
+
+        """
+        Deposita um valo da conta solicitado pelo o usuário.
+        
+        Parametros
+        ----------
+        valor: float
+            o valor é adicionado do saldo, caso seja maior que 0.
+        
+        Retorno
+        -------
+            Retona o valor booleano verdadeiro caso seja a operação seja realizada com sucesso, caso contrario falso.
+        
+        Atributos:
+        ---------
+        valor:float
+            recebe o valor que o usuario dejesa depositar e transforma em float para realizar operação. 
+        
+        """
         valor = float(valor)
         if valor >= 0:
             self.saldo+= valor
@@ -78,12 +144,24 @@ class Conta:
             return False
 
     def transferir(self,origem,destino, valor):
+        """
+            Tranfere um valo da conta solicitado pelo o usuário para uma conta destino.
+            a conta de destino é obtida através do numero da conta. 
+            
+            Parametros
+            ----------
+            valor: float
+                o valor é adicionado do saldo, caso seja maior que 0.
+            
+            Retorno
+            -------
+                Retona o valor booleano verdadeiro caso seja a operação seja realizada com sucesso, caso contrario falso
+        """
+        
         valor = float(valor)
         if self.numero == origem.numero:
             self.saldo -= valor 
-            #self._historico.add_transacao(f'{datetime.datetime.now()} - Transferência realizada para {destino.titular.nome} Valor: {valor}\n')
             destino.saldo += valor
-            #destino.historico.add_transacao(f'{datetime.datetime.now()} - Transferência recebida de {origem.titular.nome}  Valor: {valor}\n')
             return True
            
 
@@ -92,21 +170,21 @@ class Conta:
         return f'Titular: {self._titular}\nNúmero: {self._numero}\nSaldo: {self._saldo}'
 
     def extrato(self):
+        """
+            Retorna os dados do titular da conta 
+            
+            Parametros
+            ----------
+            Não possui parametros
+            
+            Retornos
+            -------
+                Retona uma string com todos os dados do titular da conta
+        """
         self._historico.add_transacao(f'Extrato realizado com sucesso\n')
         return f'{self.titular}\nNúmero: {self.numero}\nSaldo: {self.saldo}'
        
     
-
-
-
-'''''pessoa = Pessoa('nara','Dias','123','1234')
-conta = Conta(pessoa,133)
-
-print(conta.adicionarConta(conta))
-
-conta.depositar(100)
-conta.extrato()
-'''''
 
 
 
