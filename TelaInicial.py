@@ -5,6 +5,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TelaInicial(object):
+    """
+    Classe que representa a tela inicial e todas as suas configurações pré definidas
+    """
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(640, 480)

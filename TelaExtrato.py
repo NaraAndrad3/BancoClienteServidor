@@ -5,6 +5,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TelaExtrato(object):
+    """
+    classe que representa a operação de extrato e todas as suas configurações pré definidas
+    """
     def setupUi(self, TelaExtrato):
         TelaExtrato.setObjectName("TelaExtrato")
         TelaExtrato.resize(640, 480)

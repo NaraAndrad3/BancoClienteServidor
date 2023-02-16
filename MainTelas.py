@@ -18,7 +18,26 @@ import socket
 cpfAtual = ''
 
 class Ui_Main(QtWidgets.QWidget):
+    """
+    Classe responável por gerenciar todas as telas
+
+    Métodos:
+    -------
+    setupUi(Main):
+        responsável por criar stack de telas e métodos para abrir e fechar cada uma das telas
+    
+
+    """
     def setupUi(self, Main):
+        """
+        Método responsável por criar as instancias das telas(cada tela possui sua respectiva classe que é instanciada aqui)
+
+        Parâmetros:
+        ----------
+
+        Main: Classe
+
+        """
         Main.setObjectName('Main')
         Main.resize(640,480)
 
@@ -89,7 +108,42 @@ class Ui_Main(QtWidgets.QWidget):
     
         
 class Main(QMainWindow,Ui_Main):
+    """
+    Classe responsável por gerenciar todas as funcionalidades da aplicação
+
+    Métodos:
+    -------
+    serverSolicit(solicitacao):
+        responsável por receber as solicitações do cliente e encaminhá-las
+    botaoLogin: 
+        Método responsável pela operação de login na aplicação
+    botaoConfirmarTransferencia: 
+        Método responsável pela operação de transferência
+    botaoConfirmarSaque: 
+        Método responsável pela operação de saque
+    botaoConfirmarDeposito:
+        Método responsável pela operação de depósito
+    AbrirTelaExtrato: 
+        Método responsável pela operação de solicitação de esxrato da conta 
+    AbrirTelaHistorico:
+        Método responsável palo operação de solicitação de Histórico da conta
+    botaoCadastrar:
+        Método responsável pelo operação de cadastro no sistema
+ 
+    """
     def __init__(self):
+        """
+        Método contrutor com todos os atributos necessários para o funcionamento da classe
+
+        Atributos:
+        ---------
+        server: Objeto
+            Instância da classe ClientServer
+        
+        Retorno:
+        -------
+        None
+        """
         super(Main, self).__init__(None)
         self.setupUi(self)
 
@@ -97,8 +151,6 @@ class Main(QMainWindow,Ui_Main):
         #######################################################
         self.server = ClientServer('10.180.45.43',9068)
          ########################################################
-
-        self.banco = BancoGeral()
 
         #Tela Inicial
         self.tela_inicial.pushButton_2.clicked.connect(self.AbrirTelaCadastrar)
@@ -137,20 +189,52 @@ class Main(QMainWindow,Ui_Main):
 
     #Envia a operação a ser realizada para o servidor
     def serverSolicit(self,solicitacao):
+        """
+        Método responsável por recerber e encaminhar as solicitações do cliente
+
+        Parâmetros:
+        ----------
+        solicitacao: Str, obrigatório
+            String com a mensagem que contém os dados para a realização das operações. essa string é enviada para o intermediario
+            entre o cliente e o servidor(classe clientserver)
+        
+        Atributos:
+        ---------
+        recv: Str
+            Recebe a mensagem de retorno do intermediário(que recebe do servidor)
+         
+        Retorno:
+        -------
+            retorna o atributo recv
+        """
         self.server.send(solicitacao)
         recv = self.server.recebe(2048)
-        print('print 1',recv)
        # decodifica = recv.decode().split('*') #decodifica o retorno do servidor
         return recv
 
     def botaoLogin(self):
+        """
+        Método responsável pela operação de login 
+
+        Atributos:
+        ---------
+        op: Str
+            Variável que define código da operação a ser realizada
+        cpf: Str
+            Atributo para armazenar o cpf do usuário
+        senha: Str
+            Atributo para armazenar a senha do usuário
+        solicitacao: Str
+            Atributo que recebe a mesagem a ser enviada para o servidor
+        retornoServer: Lista
+            Atributo que recebe o retorno do servidor
+
+        """
         op = '01' #Operação de login
         cpf = self.tela_inicial.lineEdit_2.text()
         senha = self.tela_inicial.lineEdit.text()
         solicitacao = f'{op}*{cpf}*{senha}'
         retornoServer = self.serverSolicit(solicitacao) #mandei para o servidor
-        print('retorno do servidor',retornoServer)
-        print('ja chegou do servidor')
         if ( retornoServer[0] == 'True'):
             self.tela_inicial.lineEdit_2.setText('')
             self.tela_inicial.lineEdit.setText('')
@@ -165,6 +249,25 @@ class Main(QMainWindow,Ui_Main):
             QMessageBox.information(None,'Atenção','Usuário não encontrado')
     #Falta arrumar essa parte da transferencia
     def botaoConfirmarTransferencia(self):
+        """
+        Método responsável pela operação de transferência
+
+        Atributos:
+        ---------
+        op: Str
+            Variável que define código da operação a ser realizada
+        valor: Str
+            Atributo que armazenar o valor digitado pelo usuário
+        destino: Str
+            Atributo que armazena o numero da conta de destino
+        senha: Str
+            Atributo que recebe a senha digitada pelo titular da conta
+         solicitacao: Str
+            Atributo que recebe a mesagem a ser enviada para o servidor
+        retornoServer: Lista
+            Atributo que recebe o retorno do servidor
+
+        """
         op = '05'
         valor = self.tela_transferir.lineEdit_2.text()
         valor = float(valor)
@@ -172,7 +275,6 @@ class Main(QMainWindow,Ui_Main):
         senha = self.tela_transferir.lineEdit_4.text()
         solicitacao = f'{op}*{cpfAtual}*{destino}*{valor}*{senha}'
         retornoServer = self.serverSolicit(solicitacao)
-
         if(retornoServer[0] == 'True'):
             QMessageBox.information(None,'Atenção','Transferencia realizada com sucesso')
             self.tela_transferir.lineEdit_2.setText('')
@@ -183,6 +285,22 @@ class Main(QMainWindow,Ui_Main):
             self.tela_transferir.lineEdit_4.setText('')
 
     def botaoConfirmarSaque(self):
+        """
+        Método responsável pela operação de saque
+
+        Atributos:
+        ---------
+        op: Str
+            Variável que define código da operação a ser realizada
+        valor: Str
+            Atributo que armazenar o valor digitado pelo usuário
+        senha: Str
+            Atributo que recebe a senha digitada pelo titular da conta
+        solicitacao: Str
+            Atributo que recebe a mesagem a ser enviada para o servidor
+        retornoServer: Lista
+            Atributo que recebe o retorno do servidor
+        """
         valor = self.tela_sacar.lineEdit_2.text()
         senha = self.tela_sacar.lineEdit_3.text()
         op = '04'
@@ -198,6 +316,20 @@ class Main(QMainWindow,Ui_Main):
             self.tela_sacar.lineEdit_3.setText('') 
     
     def botaoConfirmarDeposito(self):
+        """
+        Método responsável pela operação de depósito
+
+        Atributos:
+        ---------
+        valor: Str
+            Atributo que armazenar o valor digitado pelo usuário
+        op: Str
+            Variável que define código da operação a ser realizada
+        solicitacao: Str
+            Atributo que recebe a mesagem a ser enviada para o servidor
+        retornoServer: Lista
+            Atributo que recebe o retorno do servidor
+        """
         valor = self.tela_depositar.lineEdit.text()
         valor = float(valor)
         op = '03' #define o ID da operação
@@ -212,6 +344,20 @@ class Main(QMainWindow,Ui_Main):
             
     
     def AbrirTelaExtrato(self):
+        """
+        Método responsável pela operação de extrato
+
+        Atributos:
+        --------_
+        op: Str
+            Variável que define código da operação a ser realizada
+        solicitacao: Str
+            Atributo que recebe a mesagem a ser enviada para o servidor
+        retornoServer: Lista
+            Atributo que recebe o retorno do servidor
+        extrato: Str
+            Atributo que armazena o extrato em formato de string
+        """
         op = '06' #Operação de Extrato
         solicitacao = f'{op}*{cpfAtual}'
         retornoServer = self.serverSolicit(solicitacao)
@@ -225,6 +371,19 @@ class Main(QMainWindow,Ui_Main):
             QMessageBox.information(None,'Atenção','Não foi possivel realizar esta operação')
 
     def AbrirTelaHistorico(self):
+        """
+        Método responsável pela operação de histórico
+
+        Atributos:
+        ---------
+        op: Str
+            Variável que define código da operação a ser realizada
+        solicitacao: Str
+            Atributo que recebe a mesagem a ser enviada para o servidor
+        retornoServer: Lista
+            Atributo que recebe o retorno do servidor
+        
+        """
         op = '07'
         solicitacao = f'{op}*{cpfAtual}'
         retornoServer = self.serverSolicit(solicitacao)
@@ -234,6 +393,30 @@ class Main(QMainWindow,Ui_Main):
             self.tela_historico.textEdit.setText(retornoServer[1])
 
     def botaoCadastrar(self):
+        """
+        Método responsável pela operação de cadastro
+
+        Atributos:
+        ---------
+        nome: Str
+            Atributo para armazenar o nome do cliente
+        cpf: Str
+            Atributo para armazenar o cpf do cliente
+        nascimento: str
+            Atributo para armazenar a data de nascimento do cliente
+        senha: Str
+            Atributo para armazenar a senha digitada pelo cliente
+        confirmSenha: Str
+            Atributo para realizar confirmaçã de senha
+        op: Str
+            Variável que define código da operação a ser realizada
+        solicitacao: Str
+            Atributo que recebe a mesagem a ser enviada para o servidor
+        retornoServer: Lista
+            Atributo que recebe o retorno do servidor
+        
+
+        """
         nome = self.tela_cadastrar.lineEdit.text()
         cpf = self.tela_cadastrar.lineEdit_2.text()
         nascimento = self.tela_cadastrar.lineEdit_5.text()
@@ -243,7 +426,6 @@ class Main(QMainWindow,Ui_Main):
             if not(nome == '' or cpf == '' or senha == ''):
                 op = '02'
                 p = Pessoa(nome,cpf,nascimento)
-                #self.banco.add_pessoa(p)
                 numero = random.randint(100,999)
                 numero = str(numero)
                 conta = Conta(p,numero,senha)

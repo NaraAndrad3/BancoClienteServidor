@@ -11,6 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TelaTransferir(object):
+    """
+    Classe que representa a operação de transferência e todas as suas configurações pré definidas
+    """
     def setupUi(self, TelaTransferir):
         TelaTransferir.setObjectName("TelaTransferir")
         TelaTransferir.resize(640, 480)

@@ -11,6 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TelaCadastrar(object):
+    """"
+    Classe que representa a tela de cadastro da aplicação, possui todas as devidas confirgurações pré definidas
+    """
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(640, 480)

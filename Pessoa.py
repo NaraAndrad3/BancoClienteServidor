@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Pessoa:
     """
         Classe que representa a pessoa que contém os atributos de um cliente a ser inserido no banco de dados:
@@ -18,6 +19,24 @@ class Pessoa:
         __repr__()
             retorna uma string contendo os dados de uma pessoa cadastrada.
     
+=======
+class Pessoa: 
+    """
+    Classe que representa um cliente
+
+    Atributos:
+    ---------
+    nome: Str
+        nome completo do cliente titular
+    cpf: str
+        cpf do cliente titular
+    nascimento: str
+        Data de nascimento do cliente titular
+  
+    Métodos:
+    -------
+        Métodos getters e setters dos atributos
+>>>>>>> 5b875063889661858ab9b767db364aea6e42c685
     """
     __slots__ = ['_nome','_cpf','_nascimento']
     def __init__(self, nome, cpf, nascimento):

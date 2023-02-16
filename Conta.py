@@ -84,6 +84,7 @@ class Conta:
     def historico(self,h):
         self._historico = h
    
+<<<<<<< HEAD
     def sacar(self,valor):
 
         """
@@ -165,10 +166,13 @@ class Conta:
             return True
            
 
+=======
+>>>>>>> 5b875063889661858ab9b767db364aea6e42c685
     
     def __str__(self) -> str:
         return f'Titular: {self._titular}\nNúmero: {self._numero}\nSaldo: {self._saldo}'
 
+<<<<<<< HEAD
     def extrato(self):
         """
             Retorna os dados do titular da conta 
@@ -186,5 +190,7 @@ class Conta:
        
     
 
+=======
+>>>>>>> 5b875063889661858ab9b767db364aea6e42c685
 
 
