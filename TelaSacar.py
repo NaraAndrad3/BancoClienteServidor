@@ -11,6 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TelaSacar(object):
+    """
+    Classe que representa a tela da operação sacar e todas as suas configurações pré definidas
+    """
     def setupUi(self, TelaSacar):
         TelaSacar.setObjectName("TelaSacar")
         TelaSacar.resize(640, 480)
