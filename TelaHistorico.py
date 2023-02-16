@@ -11,6 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TelaHistorico(object):
+    """
+    Classe que representa a tela de histórico e todas as suas configurações pré definidas
+    """
     def setupUi(self, TelaHistorico):
         TelaHistorico.setObjectName("TelaHistorico")
         TelaHistorico.resize(640, 480)
