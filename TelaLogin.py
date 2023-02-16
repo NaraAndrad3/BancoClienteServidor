@@ -11,6 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TelaLogin(object):
+    """
+    Classe que representa a tela pós login e todas as suas configurações pré definidas
+    """
     def setupUi(self, TelaLogin):
         TelaLogin.setObjectName("TelaLogin")
         TelaLogin.resize(640, 480)
