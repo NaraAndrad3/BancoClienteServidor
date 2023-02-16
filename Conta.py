@@ -49,7 +49,7 @@ class Conta:
     def titular(self,p):
         self._titular = p
     
-    @property
+    @propertyq
     def numero(self):
         return self._numero
     @numero.setter
