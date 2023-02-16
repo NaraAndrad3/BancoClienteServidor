@@ -11,6 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class TelaDepositar(object):
+    """
+    Classe que representa a tela de depósito e todas as suas configurações pré definidas
+    """
     def setupUi(self, TelaDepositar):
         TelaDepositar.setObjectName("TelaDepositar")
         TelaDepositar.resize(640, 480)
