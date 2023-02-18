@@ -1,0 +1,322 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Banco module &#8212; Sistema Banco 2023 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Banco">
+<span id="banco-module"></span><h1>Banco module<a class="headerlink" href="#module-Banco" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Banco.BancoGeral">
+<em class="property">class </em><code class="descclassname">Banco.</code><code class="descname">BancoGeral</code><a class="headerlink" href="#Banco.BancoGeral" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe que representa a instituição bancária</p>
+<dl class="docutils">
+<dt>data: Objeto</dt>
+<dd>Instância da classe Data</dd>
+</dl>
+<dl class="docutils">
+<dt>add_pessoa(nome,cpf,nascimento): </dt>
+<dd>Realiza o cadastro de um cliente no Banco</dd>
+<dt>buscarPessoa(cpf):</dt>
+<dd>Faz a busca de um cliente no sistema a partir do atributo cpf</dd>
+<dt>verificaSenha(cpf,senha):</dt>
+<dd>faz a verificação da autenticidade da senha utilizada por um cliente</dd>
+<dt>add_conta(cpf,senha,numero):</dt>
+<dd>Adiciona uma conta e vincula a um cliente já cadastrado no sistema</dd>
+<dt>pegaConta(cpf):</dt>
+<dd>Seleciona os dados de uma cliente do sistema e retorna um objeto da classe conta</dd>
+<dt>mostrarHistorico(cpf):</dt>
+<dd>Imprime o histórico de uma conta</dd>
+<dt>depositar(cpf,conta,valor):</dt>
+<dd>Realiza a operação de depósito em uma conta</dd>
+<dt>sacar(cpf,conta,valor):</dt>
+<dd>Realiza a operação de saque em uma conta</dd>
+<dt>transferencia(cpf,origem,destino,valor):</dt>
+<dd>realiza a operação de transfêrencia entre duas contas</dd>
+</dl>
+<dl class="method">
+<dt id="Banco.BancoGeral.add_conta">
+<code class="descname">add_conta</code><span class="sig-paren">(</span><em>cpf</em>, <em>senha</em>, <em>numero</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.add_conta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método para vincular uma conta a uma pessoa já cadastrada no sistema</p>
+<dl class="docutils">
+<dt>cpf: str, obrigatório.</dt>
+<dd>cpf da pessoa a qual a conta será vinculada</dd>
+<dt>senha: str, obrigatória.</dt>
+<dd>senha definida pelo cliente no ato do cadastro</dd>
+<dt>numero: int, obrigatório.</dt>
+<dd>Número definido (aleatóriamente) para a conta.</dd>
+</dl>
+<dl class="docutils">
+<dt>retorno: tupla ou boolean.</dt>
+<dd>Atributo que armazena o retorno do método BuscarConta</dd>
+<dt>id: int</dt>
+<dd>Atributo que recebe o retorno do método pegaId.</dd>
+</dl>
+<blockquote>
+<div>Retorna True caso a peração seja realizada e False caso não seja realizada.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Banco.BancoGeral.add_pessoa">
+<code class="descname">add_pessoa</code><span class="sig-paren">(</span><em>nome</em>, <em>cpf</em>, <em>nascimento</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.add_pessoa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método para cadastrar uma pessoa no sistema</p>
+<dl class="docutils">
+<dt>nome: str, obrigatório.</dt>
+<dd>Nome completo do cliente a ser cadastrado.</dd>
+<dt>cpf: Str, obrigatório.</dt>
+<dd>Cpf da pessoa a ser cadastrada</dd>
+<dt>nascimento: Str, Obrigatório.</dt>
+<dd>Data de nascimento da pessoa a ser cadastrada</dd>
+</dl>
+<dl class="docutils">
+<dt>retorno: tupla ou boolean.</dt>
+<dd>recebe o retorno do método buscar, se o retorno não existir(False) o cliente é cadastrado.</dd>
+</dl>
+<blockquote>
+<div>Retorna True se a pessoa for cadastrada ou False se a pessoa já estiver cadastrada no sistema.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Banco.BancoGeral.buscarPessoa">
+<code class="descname">buscarPessoa</code><span class="sig-paren">(</span><em>cpf</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.buscarPessoa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método para realizar a busca por um cliente no sistema bancário.</p>
+<dl class="docutils">
+<dt>cpf: str, obrigatório.</dt>
+<dd>Cpf do cliente a ser buscado no sistema</dd>
+</dl>
+<dl class="docutils">
+<dt>retorno: tupla ou boolean.</dt>
+<dd>Atributo que recebe o que é retornado do método Buscar</dd>
+</dl>
+<blockquote>
+<div>tupla ou boolean.
+retorna o que o atributo retorno recebe, se receber uma tupla, ela é retornada, se receber False 
+o retorno do método é False.</div></blockquote>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Banco.BancoGeral.data">
+<code class="descname">data</code><a class="headerlink" href="#Banco.BancoGeral.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Banco.BancoGeral.depositar">
+<code class="descname">depositar</code><span class="sig-paren">(</span><em>cpf</em>, <em>conta</em>, <em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.depositar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método que realiza a operação de depósito em uma conta</p>
+<dl class="docutils">
+<dt>cpf: str, obrigatório.</dt>
+<dd>Cpf do titular da conta em que será realizado o depósito</dd>
+<dt>conta: Objeto, obrigatório.</dt>
+<dd>Objeto da classe conta referente aos dados do cliente titular</dd>
+<dt>valor: float, obrigatório.</dt>
+<dd>Valor a ser depositado na conta</dd>
+</dl>
+<dl class="docutils">
+<dt>id: int</dt>
+<dd>Armazena o retorno do método pegaId.</dd>
+<dt>retorno: boolean.</dt>
+<dd>Armazena o retorno do método atualizaSaldo.</dd>
+<dt>dataT: date</dt>
+<dd>Atributo que armazena a data e horário da operação</dd>
+</dl>
+<blockquote>
+<div>Retorna True se a operação for bem sucedida, caso contrário retorna False</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Banco.BancoGeral.mostrarHistorico">
+<code class="descname">mostrarHistorico</code><span class="sig-paren">(</span><em>cpf</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.mostrarHistorico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método para formatar o histórico a ser exibido para o cliente</p>
+<dl class="docutils">
+<dt>cpf: str, obrigatório.</dt>
+<dd>Cpf do cliente titular da conta</dd>
+</dl>
+<dl class="docutils">
+<dt>id: int</dt>
+<dd>Atributo que recebe o retorno do método pegaId.</dd>
+<dt>retorno: tupla ou boolean</dt>
+<dd>Atributo que recebe o retorno do método mostraHistorico</dd>
+</dl>
+<blockquote>
+<div>Retorna uma string, caso o resultado do atributo retorno exista, ou retorna False caso ele não exista</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Banco.BancoGeral.pegaConta">
+<code class="descname">pegaConta</code><span class="sig-paren">(</span><em>cpf</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.pegaConta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método que acessa o banco de dados e recupera os dados da conta de um cliente especifico.</p>
+<dl class="docutils">
+<dt>cpf: Str, obrigatório.</dt>
+<dd>Cpf da pessoa que terá os dados buscados</dd>
+</dl>
+<dl class="docutils">
+<dt>id: int</dt>
+<dd>Atributo que recebe o retorno do método pegaId.</dd>
+<dt>retoorno: tupla ou boolen</dt>
+<dd>Atributo que recebe o retorno do método pegaConta</dd>
+</dl>
+<blockquote>
+<div>Retorno o objeto conta se existir, ou retornar False se não existir</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Banco.BancoGeral.sacar">
+<code class="descname">sacar</code><span class="sig-paren">(</span><em>cpf</em>, <em>conta</em>, <em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.sacar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método para realizar a operação de saque em uma conta.</p>
+<dl class="docutils">
+<dt>cpf: Str, obrigatório.</dt>
+<dd>Cpf do cliente titular da conta em que a operação será realizada</dd>
+<dt>conta: Objeto, obrigatório</dt>
+<dd>Objeto da classe conta referente aos dados do cliente titular</dd>
+<dt>valor: Float, obrigatório</dt>
+<dd>Valor a ser sacado da conta</dd>
+</dl>
+<dl class="docutils">
+<dt>id: int</dt>
+<dd>Atributo que recebe o retorno do método pegaId</dd>
+<dt>dataT: date</dt>
+<dd>Atributo que armazena a data e horário da operação</dd>
+</dl>
+<blockquote>
+<div>Retorna True se a operação for bem sucedida, caso contrário retorna false</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Banco.BancoGeral.transferencia">
+<code class="descname">transferencia</code><span class="sig-paren">(</span><em>cpf</em>, <em>origem</em>, <em>destino</em>, <em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.transferencia" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método que realiza a operação de transferencia entre duas contas</p>
+<dl class="docutils">
+<dt>cpf: str, obrigatório</dt>
+<dd>Cpf do cliente titulat da conta de origem</dd>
+<dt>origem: Objeto. obrigatório.</dt>
+<dd>Objeto da classe conta referente aos dados do cliente titular</dd>
+<dt>destino: str, obrigatório.</dt>
+<dd>Numero da conta de destino</dd>
+<dt>valor: float, Obrigatório.</dt>
+<dd>Valor a ser trsnaferido entre as contas</dd>
+</dl>
+<dl class="docutils">
+<dt>id: int</dt>
+<dd>Atributo que armazena o retorno do método pegaId</dd>
+<dt>retorno: tupla ou boolean</dt>
+<dd>Atributo que armazena  o retorno do método BuscarConta, que pode ser uma tupla ou um valor booleano</dd>
+<dt>idClienteId: int</dt>
+<dd>Atributo que armazena a posição 5 do atributo retorno(caso exista)</dd>
+<dt>cpfDestino: Str</dt>
+<dd>Atributo que armazena o retorno do método pegaCpf</dd>
+<dt>idDestino: int</dt>
+<dd>Atributo que armazena o retorno do método pegaId</dd>
+<dt>nomeDestino: Str</dt>
+<dd>Atributo que aramzena o nome do titular da conta de destino</dd>
+</dl>
+<blockquote>
+<div>Retorno um valor booleano(True ou False), True se a operação for concluida, caso contrário retorna False</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="Banco.BancoGeral.verificaSenha">
+<code class="descname">verificaSenha</code><span class="sig-paren">(</span><em>senha</em><span class="sig-paren">)</span><a class="headerlink" href="#Banco.BancoGeral.verificaSenha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Método para verificar a autenticidade da senha utilizada por um cliente.</p>
+<dl class="docutils">
+<dt>senha: str, obrigatório.</dt>
+<dd>variável  que armazena a senha digitada pelo cliente.</dd>
+</dl>
+<dl class="docutils">
+<dt>retorno: str ou tupla.</dt>
+<dd>Atributo que recebe o retorno do método verificaSenha</dd>
+</dl>
+<dl class="docutils">
+<dt>retorno: tupla.</dt>
+<dd>Caso seja retornada uma tupla e armazenada no atributo retorno.</dd>
+<dt>False: boolean.</dt>
+<dd>Caso seja retornado um valor boleano para o atributo retorno</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Sistema Banco</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Nara&Vinicius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/apidocs/Banco.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

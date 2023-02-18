@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Conta module &#8212; Sistema Banco 2023 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-Conta">
+<span id="conta-module"></span><h1>Conta module<a class="headerlink" href="#module-Conta" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Conta.Conta">
+<em class="property">class </em><code class="descclassname">Conta.</code><code class="descname">Conta</code><span class="sig-paren">(</span><em>titular</em>, <em>numero</em>, <em>senha</em>, <em>saldo=0.0</em>, <em>limite=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#Conta.Conta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe que representa a conta, contem todos as funcionaliddades que representa a conta de um cliente.</p>
+<dl class="docutils">
+<dt>titular:str</dt>
+<dd>referente a conta que tem um titular</dd>
+<dt>numero:int</dt>
+<dd>referente ao numero da conta do titular</dd>
+<dt>saldo:float</dt>
+<dd>referente ao valor que contem na conta</dd>
+<dt>historico:</dt>
+<dd>referente ao historico de movimentação na conta</dd>
+</dl>
+<dl class="docutils">
+<dt>sacar( valor: float)</dt>
+<dd>saca o valor da conta</dd>
+<dt>depositar(valor: float)</dt>
+<dd>deposita o valor na conta</dd>
+<dt>transferir(valor: float , destiono: int)</dt>
+<dd>transfere o valor para uma conta apartir do numero da conta de destino</dd>
+<dt>extrato()</dt>
+<dd>retorna todos os dados da conta</dd>
+</dl>
+<dl class="method">
+<dt id="Conta.Conta.depositar">
+<code class="descname">depositar</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#Conta.Conta.depositar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deposita um valo da conta solicitado pelo o usuário.</p>
+<dl class="docutils">
+<dt>valor: float</dt>
+<dd>o valor é adicionado do saldo, caso seja maior que 0.</dd>
+</dl>
+<blockquote>
+<div>Retona o valor booleano verdadeiro caso seja a operação seja realizada com sucesso, caso contrario falso.</div></blockquote>
+<dl class="docutils">
+<dt>valor:float</dt>
+<dd>recebe o valor que o usuario dejesa depositar e transforma em float para realizar operação.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Conta.Conta.extrato">
+<code class="descname">extrato</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Conta.Conta.extrato" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retorna os dados do titular da conta</p>
+<p>Não possui parametros</p>
+<blockquote>
+<div>Retona uma string com todos os dados do titular da conta</div></blockquote>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Conta.Conta.historico">
+<code class="descname">historico</code><a class="headerlink" href="#Conta.Conta.historico" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Conta.Conta.limite">
+<code class="descname">limite</code><a class="headerlink" href="#Conta.Conta.limite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Conta.Conta.numero">
+<code class="descname">numero</code><a class="headerlink" href="#Conta.Conta.numero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Conta.Conta.sacar">
+<code class="descname">sacar</code><span class="sig-paren">(</span><em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#Conta.Conta.sacar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retira um valo da conta solicitado pelo o usuário.</p>
+<dl class="docutils">
+<dt>valor: float</dt>
+<dd>o valor é subtraido do saldo, caso o valor seja menor que o saldo.</dd>
+</dl>
+<blockquote>
+<div>Retona o valor booleano verdadeiro caso seja a operação seja realizada com sucesso, caso contrario falso.</div></blockquote>
+<dl class="docutils">
+<dt>valor:float</dt>
+<dd>recebe o valor que o usuario dejesa sacar e transforma em float para realizar operação.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Conta.Conta.saldo">
+<code class="descname">saldo</code><a class="headerlink" href="#Conta.Conta.saldo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Conta.Conta.senha">
+<code class="descname">senha</code><a class="headerlink" href="#Conta.Conta.senha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Conta.Conta.slots">
+<code class="descname">slots</code><em class="property"> = ['_titular', '_numero', '_saldo', 'historico']</em><a class="headerlink" href="#Conta.Conta.slots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="Conta.Conta.titular">
+<code class="descname">titular</code><a class="headerlink" href="#Conta.Conta.titular" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Conta.Conta.transferir">
+<code class="descname">transferir</code><span class="sig-paren">(</span><em>origem</em>, <em>destino</em>, <em>valor</em><span class="sig-paren">)</span><a class="headerlink" href="#Conta.Conta.transferir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tranfere um valo da conta solicitado pelo o usuário para uma conta destino.
+a conta de destino é obtida através do numero da conta.</p>
+<dl class="docutils">
+<dt>valor: float</dt>
+<dd>o valor é adicionado do saldo, caso seja maior que 0.</dd>
+</dl>
+<blockquote>
+<div>Retona o valor booleano verdadeiro caso seja a operação seja realizada com sucesso, caso contrario falso</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Sistema Banco</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Nara&Vinicius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="../_sources/apidocs/Conta.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
