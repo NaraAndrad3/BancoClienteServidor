@@ -1,0 +1,305 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>BD module &#8212; Sistema Banco 2023 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-BD">
+<span id="bd-module"></span><h1>BD module<a class="headerlink" href="#module-BD" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="BD.Data">
+<em class="property">class </em><code class="descclassname">BD.</code><code class="descname">Data</code><span class="sig-paren">(</span><em>host</em>, <em>db</em>, <em>user</em>, <em>password</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Classe que representa a Data:</p>
+<dl class="docutils">
+<dt>host: str</dt>
+<dd>ip da conexão com banco de dados.</dd>
+<dt>bd:str</dt>
+<dd>nome do banco de dados que pertence ao projeto.</dd>
+<dt>user: str</dt>
+<dd>nome do usuario do banco de dados.</dd>
+<dt>password:str</dt>
+<dd>senha do banco de dados para permitir a conexão.</dd>
+</dl>
+<dl class="docutils">
+<dt>cadastrarPessoa(nome: str, cpf:str, nascimento: str )</dt>
+<dd>recebe os dados passados por parametros e realiza a operação sql de inserção dos dados na tabela cliente do banco dedos.</dd>
+<dt>AdicionaConta(numero: int, saldo:float, limite:float, senha:str, id: int)</dt>
+<dd>cadastrar a conta da pessoa com os paramentros da conta  e o id referente a pessoa ja cadastrada.</dd>
+<dt>pegaId(cpf:str)</dt>
+<dd>busca o id do usuario por meior do cpf.</dd>
+<dt>pegaCpf(idCliente: int)</dt>
+<dd>busca o cpf do cliente por meior do id.</dd>
+<dt>retornaNome(cpf:str)</dt>
+<dd>busca o nome do cliente pelo cpf.</dd>
+<dt>Buscar(cpf:str)</dt>
+<dd>busca todos os dados do cliente pelo cpf.</dd>
+<dt>BuscarConta(numero: int)</dt>
+<dd>buscar a conta do cliente pelo numeo da conta.</dd>
+<dt>AtualizaSaldo(newSaldo: float, id: int)</dt>
+<dd>Atualiza o saldo da conta pelo id e recebendo novo saldo.</dd>
+<dt>historico(TipoTransacao: str,valor: float,data: dateTime,conta_idConta: int)</dt>
+<dd>Insere o histórico de transação</dd>
+<dt>MostraHistorico(id:int)</dt>
+<dd>retorna o de uma determinada conta pelo id</dd>
+</dl>
+<dl class="method">
+<dt id="BD.Data.AdicionarConta">
+<code class="descname">AdicionarConta</code><span class="sig-paren">(</span><em>numero</em>, <em>saldo</em>, <em>limite</em>, <em>senha</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.AdicionarConta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que cadastra conta no banco realizando operação de inserção na tabela conta passando referenciando a tabela pessoa pelo id</p>
+<dl class="docutils">
+<dt>numero:int</dt>
+<dd>numero da conta</dd>
+<dt>saldo:float</dt>
+<dd>saldo da conta</dd>
+<dt>limite: float</dt>
+<dd>limite do quando pode ser inserido na conta</dd>
+<dt>senha: str</dt>
+<dd>senha da conta do cliente</dd>
+<dt>id: int</dt>
+<dd>id que pertence a pessoa cadastrada na tabela Pessoa, usado para relação entre as tabelas Pessoa e Conta</dd>
+</dl>
+<blockquote>
+<div>True quando a operação é realizada com sucesso</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.Buscar">
+<code class="descname">Buscar</code><span class="sig-paren">(</span><em>cpf</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.Buscar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que realiza uma busca na tabela cliente e pega todos os dados do cliente pelo cpf.</p>
+<dl class="docutils">
+<dt>cpf: str</dt>
+<dd>usado para realizar a busca dos dados onde cpf é iguai ao informado.</dd>
+</dl>
+<blockquote>
+<div>retorna os dados do cliente caso encontrado.
+retorna boolean false caso o id não seja encontrado na base dados.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.BuscarConta">
+<code class="descname">BuscarConta</code><span class="sig-paren">(</span><em>numero</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.BuscarConta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que realiza uma busca na tabela conta e pega os dados da conta  pelo numero informado.</p>
+<dl class="docutils">
+<dt>numero: int</dt>
+<dd>usado para realizar a busca dos dados da conta.</dd>
+</dl>
+<blockquote>
+<div>retorna os dados caso encontrado.
+retorna boolean false caso o id não seja encontrado na base dados.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.atualizaSaldo">
+<code class="descname">atualizaSaldo</code><span class="sig-paren">(</span><em>newSaldo</em>, <em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.atualizaSaldo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que realiza uma atualização na tabela conta para atualizar o saldo da conta pelo id e um novo saldo.</p>
+<dl class="docutils">
+<dt>newSaldo: float</dt>
+<dd>usado para realizar a busca dos dados da conta.</dd>
+<dt>id: int</dt>
+<dd>id da conta que contem o saldo a ser atualizado por newSaldo</dd>
+</dl>
+<blockquote>
+<div>retorna os dados caso encontrado.
+retorna boolean false caso o id não seja encontrado na base dados.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.cadastrarPessoa">
+<code class="descname">cadastrarPessoa</code><span class="sig-paren">(</span><em>nome</em>, <em>cpf</em>, <em>nascimento</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.cadastrarPessoa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que cadastra pessoa no banco realizando operação de inserção na tabela Cliente</p>
+<dl class="docutils">
+<dt>nome:str</dt>
+<dd>nome da pessoa a ser cadastrada</dd>
+<dt>cpf:str</dt>
+<dd>cpf da pessoa</dd>
+<dt>nascimento: DATE</dt>
+<dd>Data de nascimento da pessoa</dd>
+</dl>
+<blockquote>
+<div>True quando a operação é realizada com sucesso</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.historico">
+<code class="descname">historico</code><span class="sig-paren">(</span><em>tipoTransacao</em>, <em>valor</em>, <em>data</em>, <em>conta_idConta</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.historico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que realiza uma inserção do histórico na tabela histórico .</p>
+<dl class="docutils">
+<dt>tipoTransacao: str</dt>
+<dd>string que informa o tipo de transação que será realizada.</dd>
+<dt>valor: float</dt>
+<dd>valor, o valor é usado para demontrar que ouve uma alteração na conta, exemplo,(Houve uma saque no valor de (valor))</dd>
+<dt>data: DATE</dt>
+<dd>especifica a data da transação realizada</dd>
+<dt>conta_idConta: int</dt>
+<dd>id da conta em foi realizada a operação.</dd>
+</dl>
+<blockquote>
+<div>retorna boolena True caso a operação seja realizada com sucesso.
+retorna boolean false caso não seja realizada com sucesso..</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.mostraHistorico">
+<code class="descname">mostraHistorico</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.mostraHistorico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que pega todos as transações das realizadas pelo id da conta na tabela histórico .</p>
+<dl class="docutils">
+<dt>id: int</dt>
+<dd>id da conta que contem o saldo a ser atualizado por newSaldo</dd>
+</dl>
+<blockquote>
+<div>retorna os dados caso encontrado.
+retorna boolean false caso o id não seja encontrado na base dados.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.pegaConta">
+<code class="descname">pegaConta</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.pegaConta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que realiza uma busca na tabela conta e pega os dados da conta  pelo id informado.</p>
+<dl class="docutils">
+<dt>numero: int</dt>
+<dd>usado para realizar a busca dos dados da conta.</dd>
+</dl>
+<blockquote>
+<div>retorna os dados caso encontrado.
+retorna boolean false caso o id não seja encontrado na base dados.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.pegaCpf">
+<code class="descname">pegaCpf</code><span class="sig-paren">(</span><em>idClienteId</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.pegaCpf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funcao que realiza uma busca na tabela cliente e pega o cpf do cliente pelo id</p>
+<dl class="docutils">
+<dt>idClienteId: int</dt>
+<dd>usado para realizar a busca do cpf onde id é iguai ao informado.</dd>
+</dl>
+<blockquote>
+<div>retorna o cpf caso encontrado
+retorna boolean false caso o cpf não seja encontrado na base dados</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.pegaId">
+<code class="descname">pegaId</code><span class="sig-paren">(</span><em>cpf</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.pegaId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Funcao que realiza uma busca na tabela cliente e pega o id do cliente pelo cpf</p>
+<dl class="docutils">
+<dt>cpf: str</dt>
+<dd>usado para realizar a busca do id onde cpf é iguai ao informado.</dd>
+</dl>
+<blockquote>
+<div>retorna o id caso encontrado
+retorna boolean false caso o id não seja encontrado na base dados</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.retornaNome">
+<code class="descname">retornaNome</code><span class="sig-paren">(</span><em>cpf</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.retornaNome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que realiza uma busca na tabela cliente e pega o nome do cliente pelo cpf</p>
+<dl class="docutils">
+<dt>cpf: str</dt>
+<dd>usado para realizar a busca do nome onde cpf é iguai ao informado.</dd>
+</dl>
+<blockquote>
+<div>retorna o nome caso encontrado
+retorna boolean false caso o id não seja encontrado na base dados</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="BD.Data.verifcaSenha">
+<code class="descname">verifcaSenha</code><span class="sig-paren">(</span><em>senha</em><span class="sig-paren">)</span><a class="headerlink" href="#BD.Data.verifcaSenha" title="Permalink to this definition">¶</a></dt>
+<dd><p>Função que realiza uma busca na tabela Conta e verifica se a senha esta correta, a busca é feita pelo id</p>
+<dl class="docutils">
+<dt>id: int</dt>
+<dd>usado para realizar a busca dos dados da conta.</dd>
+</dl>
+<blockquote>
+<div>retorna os dados caso encontrado.
+retorna boolean false caso o id não seja encontrado na base dados.</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Sistema Banco</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Nara&Vinicius.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/BD.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

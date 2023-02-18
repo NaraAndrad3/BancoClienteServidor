@@ -1,0 +1,21 @@
+src
+===
+
+.. toctree::
+   :maxdepth: 4
+
+   BD
+   Banco
+   ClientServer
+   Historico
+   MainTelas
+   Pessoa
+   TelaCadastro
+   TelaDepositar
+   TelaExtrato
+   TelaHistorico
+   TelaInicial
+   TelaLogin
+   TelaSacar
+   TelaTransferir
+   server
